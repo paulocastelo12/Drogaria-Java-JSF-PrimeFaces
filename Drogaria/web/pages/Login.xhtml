@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/Templates/modeloSistema.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="menu">
+        <ui:include src="/includes/menuPrincipal.xhtml"></ui:include>
+    </ui:define>
+    <ui:define name="conteudo">
+        <p:dialog header="Efetuar Login" modal="true" appendTo="@(body)"
+                  visible="true"
+                  widgetVar="dlgFabAlterar" resizable="false" 
+                  draggable="false" closable="false">
+
+            <h:form>
+                <h:panelGrid  columns="2" cellpadding="5" cellspacing="5" >
+                    <h:outputLabel value="Login:"/>
+                    <p:inputText size="30" maxlength="40" value="#{MBUsuario.login}"></p:inputText>
+
+                    <h:outputLabel value="Senha:"/>
+                    <p:password size="10" value="#{MBUsuario.senha}" ></p:password>
+                </h:panelGrid>
+
+                <h:panelGrid columns="2" cellpadding="5">
+                    <p:commandButton value="Entrar" actionListener="#{MBUsuario.validar()}"
+                                     update=" :msgGlobal"/>
+                    <p:commandButton value="Limpar"/>
+
+                </h:panelGrid>
+
+                <h:panelGrid columns="1" >
+                    <p:link outcome="fabricante.xhtml" value="Esqueceu sua Senha?">
+                        <f:param name="productId" value="10" />
+                    </p:link>
+                </h:panelGrid>
+
+
+            </h:form>
+        </p:dialog>
+    </ui:define>
+
+</ui:composition>
+
